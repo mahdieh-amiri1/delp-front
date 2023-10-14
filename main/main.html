@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Document</title>
+</head>
+
+<script src="./main.js" type="module"></script>
+
+<body>
+    <button id="connectButton">Connect Wallet</button>
+    <br>
+    <div class="tabs">
+        <button class="tablinks" data-tab="Home" onclick="openTab(event, 'Home')">Home</button>
+        <button class="tablinks" data-tab="Owner" onclick="openTab(event, 'Owner')">Owner</button>
+        <button class="tablinks" data-tab="CourseCreator" onclick="openTab(event, 'CourseCreator')">Course
+            Creator</button>
+        <button class="tablinks" data-tab="Student" onclick="openTab(event, 'Student')">Student</button>
+        <button class="tablinks" data-tab="FundingsPage" onclick="openTab(event, 'FundingsPage')">Fundings Page</button>
+    </div>
+
+    <div id="Home" class="tabcontent">
+        <h3>DeLP Project</h3>
+        <h3>Unlock Decentralized Learning!</h3>
+        <a href=https://github.com/mahdieh-amiri1/delp>Project Github</a>
+    </div>
+
+    <div id="Owner" class="tabcontent">
+        <h3>Owner Functions</h3>
+        <button id="withdrawFundsButton">Withdraw Funds</button>
+        <button id="updateMatchingFundsButton">Update Matching Funds</button>
+        <button id="toggleWithdrawFundsButton">Toggle Withdrawal</button>
+        <button id="resetContributionsButton">Reset Contributions</button>
+        <br>
+        <br>
+        <!-- <div id="eventLog">Event Log:</div> -->
+    </div>
+
+    <div id="CourseCreator" class="tabcontent">
+        <h3>Add your course here:</h3>
+        <!-- Add Course Form -->
+        <form id="addCourseForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" placeholder="Smart Contract Development">
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" placeholder="Solidity and Ethereum Blockchain...">
+
+            <label for="contentHash">IPFS hash of your course content:</label>
+            <input type="text" id="contentHash" placeholder="ipfs">
+
+            <label for="registrationFee">Registration base fee (DeLT):</label>
+            <input type="number" id="registrationFee" placeholder="1 DeLT" min="1">
+
+            <label for="certificateMetadata">Certificate metadata:</label>
+            <input type="text" id="certificateMetadata" placeholder="Metadata">
+
+        </form>
+        <button id="addCourseButton">Add Course</button>
+
+        <div>
+            <h3>Manage your courses here:</h3>
+            <button id="myAddedCoursesButton">My added courses</button>
+            <div id="myAddedCourses">
+                <!-- This div will contain the list of added courses 
+                Can: 
+                Update course content
+                Toggle course status (active)-->
+            </div>
+        </div>
+
+        <div>
+            <h3>Manage students here:</h3>
+            <label for="studentAddress">Student address:</label>
+            <input type="text" id="studentAddress" placeholder="0x...">
+            <br>
+            <label for="courseId">Course ID:</label>
+            <input type="number" id="courseId" min="0">
+            <br>
+            <button id="showStatusButton"> Show student status</button>
+            <button id="updatePassedButton"> Uppdate passed course</button>
+            <button id="issueCertificateButton"> Issue certificate</button>
+        </div>
+        <br>
+        <!-- <div id="eventLog">Event Log:</div> -->
+    </div>
+
+    <div id="Student" class="tabcontent">
+        <!-- Student-related content -->
+
+        <button id="showCoursesButton">List of courses</button>
+
+        <div id="courseList">
+            <!-- This div will contain the list of courses -->
+        </div>
+        <br><br><br>
+        <button id="myEnrolledCoursesButton">My enrolled courses</button>
+
+        <div id="myCourses">
+            <!-- This div will contain the list of enrolled courses -->
+        </div>
+
+        <br>
+        <button id="myCertificatesButton">My certificates</button>
+
+        <div id="myCertificates">
+            <!-- This div will contain the list of certificates -->
+        </div>
+        <br>
+        <!-- <div id="eventLog">Event Log:</div> -->
+
+    </div>
+
+
+    <div id="FundingsPage" class="tabcontent">
+        <!-- Fundings Page-related content -->
+        <label for="tokenAmount">Increase matching pool (DeLT):</label>
+        <input type="number" id="tokenAmount" placeholder="1 DeLT" min="1">
+        <button id="addToPoolButton">Add to pool</button>
+        <br>
+        <br>
+
+        <button id="withdrawalEnabledButton">Withdrawal Enabled</button>
+        <button id="withdrawalDeadlineButton">Withdrawal Deadline</button>
+        <button id="pendingWithdrawalsButton">Pending Withdrawals</button>
+        <br>
+        <h3 id="withdrawalEnabledStatus">Withdrawal Enabled: </h3>
+        <h3 id="withdrawalDeadlineStatus">Withdrawal Deadline: </h3>
+        <h3 id="pendingWithdrawalsStatus">Pending Withdrawals: </h3>
+
+
+        <br>
+        <!-- Input field for project ID -->
+        <label for="projectId">Project ID:</label>
+        <input type="number" min="0" id="projectId" placeholder="Enter project ID to show or withdraw matching fund">
+
+        <button id="showMatchingFundButton">Show Matching Fund</button>
+        <div id=matchingFundAmount></div>
+        <br>
+        <button id="withdrawMatchingFundButton">Withdraw Matching Fund</button>
+        <br>
+        <br>
+        <button id="showPoolButton">Matching pool balance</button>
+        <br>
+
+        <!-- <div id="eventLog">Event Log:</div> -->
+    </div>
+
+    <div id="eventLog">. . . .</div>
+
+
+    <script>
+        // JavaScript code for tab handling and remembering the last active tab
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            if (evt) {
+                evt.currentTarget.classList.add("active");
+            }
+            storeCurrentTab(tabName);
+        }
+
+        function getCurrentTab() {
+            return localStorage.getItem('currentTab');
+        }
+
+        function storeCurrentTab(tabName) {
+            localStorage.setItem('currentTab', tabName);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentTab = getCurrentTab();
+            if (currentTab) {
+                openTab(null, currentTab);
+            } else {
+                openTab(null, 'CourseCreator'); // Change this to the default tab you want to open
+            }
+        });
+
+        // Call openTab when the page loads to restore the last active tab
+        window.addEventListener('load', function () {
+            const currentTab = getCurrentTab();
+            if (currentTab) {
+                openTab(null, currentTab);
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+/* Add general styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the "Connect Wallet" button */
+#connectWallet {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+/* Style the tabs container */
+.tabs {
+    background-color: #333;
+    overflow: hidden;
+}
+
+/* Style the tab buttons */
+.tablinks {
+    background-color: #444;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    float: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Change the color of tab buttons on hover */
+.tablinks:hover {
+    background-color: #555;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Add an "active" class to the currently selected tab button */
+.tablinks.active {
+    background-color: #007BFF;
+}
+
+#CourseCreator {
+    display: block; /* Display this tab initially */
+}
+
+/* Style the form elements within the "Create Course" form */
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
